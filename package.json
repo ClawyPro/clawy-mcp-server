@@ -1,0 +1,58 @@
+{
+  "name": "@clawy/mcp-server",
+  "version": "0.1.0",
+  "description": "Pay-per-use MCP server for AI agents — 15 API tools + smart LLM routing. No API keys needed, pay with USDC on Base.",
+  "keywords": [
+    "mcp",
+    "x402",
+    "ai-agent",
+    "usdc",
+    "dart",
+    "tabelog",
+    "google-maps",
+    "kakao-maps",
+    "tmap",
+    "brave-search",
+    "firecrawl",
+    "deepl",
+    "elevenlabs",
+    "court-auction",
+    "korean-api",
+    "llm-gateway",
+    "llm-router",
+    "base-chain",
+    "model-context-protocol"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "clawy-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "viem": "^2.31.3",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "tsx": "^4.19.4",
+    "@types/node": "^22.15.29"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clawy-ai/clawy-mcp-server"
+  },
+  "homepage": "https://github.com/clawy-ai/clawy-mcp-server#readme"
+}
