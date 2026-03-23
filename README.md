@@ -15,7 +15,7 @@ Add to your MCP config:
   "mcpServers": {
     "clawy": {
       "command": "npx",
-      "args": ["-y", "@clawy/mcp-server"],
+      "args": ["-y", "clawy-mcp-server"],
       "env": {
         "CLAWY_WALLET_PRIVATE_KEY": "0xYOUR_PRIVATE_KEY"
       }
@@ -99,7 +99,7 @@ No API keys needed for any LLM provider. The smart router analyzes your request 
 ```
 Your AI Agent (Claude, Cursor, etc.)
     ↓ MCP protocol (stdio)
-@clawy/mcp-server (this package)
+clawy-mcp-server (this package)
     ↓ HTTPS (Bearer token)
 x402.clawy.pro (API Gateway)
     ↓

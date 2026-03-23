@@ -1,5 +1,5 @@
 {
-  "name": "@clawy/mcp-server",
+  "name": "clawy-mcp-server",
   "version": "0.1.0",
   "description": "Pay-per-use MCP server for AI agents — 15 API tools + smart LLM routing. No API keys needed, pay with USDC on Base.",
   "keywords": [
