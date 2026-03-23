@@ -2,7 +2,7 @@
 
 **Pay-per-use API tools and LLM gateway for AI agents.** No API keys needed — authenticate with an Ethereum wallet and pay with USDC on Base.
 
-15 API services + smart LLM routing, accessible via [Model Context Protocol (MCP)](https://modelcontextprotocol.io).
+18 API services + smart LLM routing, accessible via [Model Context Protocol (MCP)](https://modelcontextprotocol.io).
 
 ## Quick Start
 
@@ -44,8 +44,6 @@ Send USDC on Base chain to `0x6a2f675f5f81909eecd1966a15c90877bc106858` (minimum
 | `dart_financial` | Korean company financial statements (income, balance sheet, cash flow) | $0.001 |
 | `fmp_quote` | Real-time & historical stock quotes (US + global markets) | $0.0012 |
 | `fmp_financial` | Company financial statements via Financial Modeling Prep | $0.0012 |
-| `alpha_vantage_query` | Stock time series, forex rates, crypto prices, economic indicators | ~$0.001 |
-| `finnhub_query` | Real-time quotes, company news, earnings, market status | ~$0.001 |
 
 ### Search & Web Scraping
 
@@ -61,34 +59,63 @@ Send USDC on Base chain to `0x6a2f675f5f81909eecd1966a15c90877bc106858` (minimum
 | Tool | Description | Cost |
 |------|-------------|------|
 | `google_maps_places` | Search places, restaurants, landmarks via Google Maps | $0.0036 |
-| `google_maps_geocode` | Address ↔ coordinates conversion | $0.006 |
+| `google_maps_geocode` | Address <-> coordinates conversion | $0.006 |
 | `google_maps_directions` | Driving, walking, transit directions between points | $0.006 |
 | `kakao_maps_search` | Korean local search — best for Korean addresses and businesses | $0.001 |
 | `tmap_route` | Korean driving routes with real-time traffic, ETA, toll fees | $0.0012 |
 | `tmap_poi` | Korean POI search with detailed address info | $0.001 |
 
-### Translation & Speech
+### Travel
 
 | Tool | Description | Cost |
 |------|-------------|------|
-| `deepl_translate` | Neural machine translation (30+ languages) | ~$0.001 |
-| `elevenlabs_tts` | AI text-to-speech synthesis (multiple voices & languages) | ~$0.001 |
+| `hotels_search` | Search 2M+ hotels worldwide via Jinko | $0.003 |
+| `hotels_details` | Full hotel details, room options, and rates | $0.0015 |
+| `hotels_find_place` | Convert location name to coordinates for hotel search | $0.0005 |
+| `airbnb_search` | Search Airbnb listings by location, dates, guests, and price | $0.003 |
+| `airbnb_details` | Full listing details, amenities, and house rules | $0.0015 |
+| `flights_search` | Search flights by origin, destination, and dates | $0.005 |
+| `flights_calendar` | View cheapest flights by month for a route | $0.003 |
+| `flights_discover` | Discover popular routes and deals from an origin | $0.003 |
 
-### Domain-Specific APIs
+### Food & Dining
 
 | Tool | Description | Cost |
 |------|-------------|------|
 | `tabelog_search` | Search Japanese restaurants on [Tabelog](https://tabelog.com) — ratings, reviews, cuisine | $0.0012 |
+| `michelin_search` | Search Michelin Guide restaurants (Japan, Korea, USA) by city, cuisine, or award | $0.0012 |
+
+### AI Generation
+
+| Tool | Description | Cost |
+|------|-------------|------|
+| `gemini_image` | Generate an image from a text prompt (Google Gemini) | $0.05 |
+| `gemini_edit` | Edit an existing image with a text prompt | $0.05 |
+| `gemini_video` | Start async video generation (Veo 3.1 Fast) | $0.50 |
+| `gemini_video_status` | Check video generation status | Free |
+| `elevenlabs_tts` | AI text-to-speech synthesis (multiple voices & languages) | $0.015 |
+| `elevenlabs_voices` | List available voices with IDs and language info | Free |
+
+### Sports
+
+| Tool | Description | Cost |
+|------|-------------|------|
+| `golf_search` | Search golf courses by name or region (Korea focus) | $0.0012 |
+| `golf_course` | Detailed golf course info — holes, par, green fees | $0.001 |
+
+### Government & Legal
+
+| Tool | Description | Cost |
+|------|-------------|------|
 | `court_auction_search` | Search Korean court auction property listings | $0.001 |
 | `court_auction_detail` | Detailed auction case info — appraisal, bids, documents | $0.001 |
 | `data_go_kr_query` | Korean government open data (real estate, weather, transport) | $0.001 |
-| `semantic_scholar_search` | Academic paper search — titles, abstracts, citations, PDFs | ~$0.001 |
 
 ### LLM Gateway
 
 | Tool | Description | Cost |
 |------|-------------|------|
-| `llm_chat` | Smart-routed LLM — auto-selects Claude, GPT, Gemini, or Llama based on task complexity | $0.50/call |
+| `llm_chat` | Smart-routed LLM — auto-selects Claude, GPT, or Kimi based on task complexity | $0.50/call |
 
 No API keys needed for any LLM provider. The smart router analyzes your request and picks the optimal model.
 
@@ -98,15 +125,15 @@ No API keys needed for any LLM provider. The smart router analyzes your request 
 
 ```
 Your AI Agent (Claude, Cursor, etc.)
-    ↓ MCP protocol (stdio)
+    | MCP protocol (stdio)
 clawy-mcp-server (this package)
-    ↓ HTTPS (Bearer token)
+    | HTTPS (Bearer token)
 x402.clawy.pro (API Gateway)
-    ↓
-Upstream APIs (DART, Google Maps, OpenAI, etc.)
+    |
+Upstream APIs (DART, Google Maps, Jinko Hotels, etc.)
 ```
 
-1. **Auth**: Your wallet private key signs an EIP-191 message → 24-hour session token (auto-refreshed)
+1. **Auth**: Your wallet private key signs an EIP-191 message -> 24-hour session token (auto-refreshed)
 2. **Use**: Call any tool through MCP — the server proxies to the gateway
 3. **Pay**: Credits deducted per call (microcent precision). Top up by sending USDC on Base.
 
@@ -137,17 +164,17 @@ Use the `clawy_balance` tool to check your remaining credits at any time.
 ## Use Cases
 
 - **Korean stock research**: DART filings + FMP quotes + Brave search for news
-- **Japan restaurant planning**: Tabelog search + Google Maps directions
+- **Japan restaurant planning**: Tabelog + Michelin Guide + Google Maps directions
+- **Travel planning**: Flight search + Hotels/Airbnb + Google Maps
 - **Korean real estate**: Court auction listings + Kakao Maps for location
-- **Academic research**: Semantic Scholar papers + DeepL translation
-- **Multilingual agents**: DeepL translate + ElevenLabs TTS
+- **Content creation**: Gemini image/video generation + ElevenLabs TTS
 - **General AI agents**: Smart LLM routing without managing API keys
 
 ---
 
 ## Pricing
 
-All prices include a 30% platform margin. Credits are in USDC (1 USDC = $1).
+All prices include a 20% platform margin. Credits are in USDC (1 USDC = $1).
 
 - Minimum top-up: $1 USDC
 - Credits persist until used (no expiry)
