@@ -2,6 +2,8 @@
 
 **Pay-per-use API tools and LLM gateway for AI agents.** No API keys needed — authenticate with an Ethereum wallet and pay with USDC on Base.
 
+[![Clawy Server MCP server](https://glama.ai/mcp/servers/ClawyPro/clawy-mcp-server/badges/card.svg)](https://glama.ai/mcp/servers/ClawyPro/clawy-mcp-server)
+
 15 API services + smart LLM routing, accessible via [Model Context Protocol (MCP)](https://modelcontextprotocol.io).
 
 ## Quick Start
