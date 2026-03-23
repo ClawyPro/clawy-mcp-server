@@ -1,0 +1,29 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.clawypro/clawy-mcp-server",
+  "description": "Pay-per-use MCP server for AI agents — 15 API tools (DART, Tabelog, Google Maps, Brave Search, Firecrawl, DeepL, ElevenLabs, and more) + smart LLM routing (Claude, GPT, Gemini). No API keys needed, authenticate with Ethereum wallet and pay with USDC on Base chain.",
+  "repository": {
+    "url": "https://github.com/ClawyPro/clawy-mcp-server",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "clawy-mcp-server",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Ethereum wallet private key for authentication (hex with 0x prefix). Use a dedicated wallet.",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "CLAWY_WALLET_PRIVATE_KEY"
+        }
+      ]
+    }
+  ]
+}
